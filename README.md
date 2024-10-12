@@ -122,5 +122,4 @@ Previous_week_Revenue = CALCULATE(
 - TX, NY & CA are contributing to 68%
 - Overall Activation rate is 57.5%
 - Overall Delinquent rate is 6.06%
-## Dashboard Images
-![Customer Dashboard Overview](Credit Card Financial Dashboard- Transaction-1.png)
+
