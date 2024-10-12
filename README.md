@@ -83,57 +83,58 @@ To develop a comprehensive credit card weekly dashboard that provides real-time 
 ### Create AgeGroup Column
 ```dax
 AgeGroup = SWITCH(
-    TRUE(),
-    'public cust_detail'[customer_age] < 30, "20-30",
-    'public cust_detail'[customer_age] >= 30 && 'public cust_detail'[customer_age] < 40, "30-40",
-    'public cust_detail'[customer_age] >= 40 && 'public cust_detail'[customer_age] < 50, "40-50",
-    'public cust_detail'[customer_age] >= 50 && 'public cust_detail'[customer_age] < 60, "50-60",
-    'public cust_detail'[customer_age] >= 60, "60+",
-    "unknown"
+     TRUE(),
+     'ccdb cust_detail'[Customer_Age] < 30, "20-30",
+     'ccdb cust_detail'[Customer_Age] >=30 && 'ccdb cust_detail'[Customer_Age] < 40, "30-40",
+     'ccdb cust_detail'[Customer_Age] >=40 && 'ccdb cust_detail'[Customer_Age] < 50, "40-50",
+     'ccdb cust_detail'[Customer_Age] >=50 && 'ccdb cust_detail'[Customer_Age] < 60, "50-60",
+     'ccdb cust_detail'[Customer_Age] >=60,"60+",
+     "unknown")
 )
 ```
 
 ### Create IncomeGroup Column
 ```dax
 IncomeGroup = SWITCH(
-    TRUE(), 
-    'public cust_detail'[income] < 35000, "Low",
-    'public cust_detail'[income] >= 35000 && 'public cust_detail'[income] < 70000, "Med",
-    'public cust_detail'[income] >= 70000, "High",
-    "unknown"
+     TRUE(),
+     'ccdb cust_detail'[Income] < 35000, "Low",
+     'ccdb cust_detail'[Income] >= 35000 && 'ccdb cust_detail'[Income] < 70000, "Med",
+     'ccdb cust_detail'[Income] >= 70000, "High",
+     "unkonw")
 )
 ```
 
 ### Calculate Revenue
 ```dax
-Revenue = 'public cc_detail'[annual_fees] + 'public cc_detail'[total_trans_amt] + 'public cc_detail'[interest_earned]
+Revenue = 'ccdb cc_detail'[Annual_Fees]+'ccdb cc_detail'[Total_Trans_Amt]+'ccdb cc_detail'[Interest_Earned]
 ```
 
 ### Calculate Week Number
 ```dax
-week_num2 = WEEKNUM('public cc_detail'[week_start_date])
+WeekNum2 = WEEKNUM('ccdb cc_detail'[Week_Start_Date].[Date] )
+```
+
+### Calculate Week On Week Revenue
+```dax
+wow_revenue = DIVIDE(([Current_week_revenue]-[Previous_week_revenue]), [Previous_week_revenue])
 ```
 
 ### Current Week Revenue
 ```dax
-Current_week_Revenue = CALCULATE(
-    SUM('public cc_detail'[Revenue]),
-    FILTER(
-        ALL('public cc_detail'),
-        'public cc_detail'[week_num2] = MAX('public cc_detail'[week_num2])
-    )
-)
+Current_week_revenue = CALCULATE(
+     SUM('ccdb cc_detail'[Revenue]),
+     FILTER(
+        ALL('ccdb cc_detail'),
+        'ccdb cc_detail'[WeekNum2] = MAX('ccdb cc_detail'[WeekNum2])))
 ```
 
 ### Previous Week Revenue
 ```dax
-Previous_week_Revenue = CALCULATE(
-    SUM('public cc_detail'[Revenue]),
-    FILTER(
-        ALL('public cc_detail'),
-        'public cc_detail'[week_num2] = MAX('public cc_detail'[week_num2])-1
-    )
-)
+Previous_week_revenue = CALCULATE(
+     SUM('ccdb cc_detail'[Revenue]),
+     FILTER(
+        ALL('ccdb cc_detail'),
+        'ccdb cc_detail'[WeekNum2] = MAX('ccdb cc_detail'[WeekNum2])-1 ))
 ```
 
 ## Project Insights
