@@ -22,8 +22,7 @@ To develop a comprehensive credit card weekly dashboard that provides real-time 
 
 2. **Create tables in SQL**:
    ```sql
-   
-      CREATE TABLE cc_detail (
+   CREATE TABLE cc_detail (
           Client_Num INT,
           Card_Category VARCHAR(20),
           Annual_Fees INT,
@@ -44,7 +43,8 @@ To develop a comprehensive credit card weekly dashboard that provides real-time 
           Delinquent_Acc VARCHAR(5)
 );
 
-      CREATE TABLE cust_detail (
+
+    CREATE TABLE cust_detail (
           Client_Num INT,
           Customer_Age INT,
           Gender VARCHAR(5),
@@ -61,7 +61,6 @@ To develop a comprehensive credit card weekly dashboard that provides real-time 
           Income INT,
           Cust_Satisfaction_Score INT
 );
-
 ```
 
 3. **Import CSV files into SQL**:
