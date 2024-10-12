@@ -59,22 +59,23 @@ To develop a comprehensive credit card weekly dashboard that provides real-time 
           Customer_Job VARCHAR(50),
           Income INT,
           Cust_Satisfaction_Score INT);
-```3. **Import CSV files into SQL**:
+   ```
+3. **Import CSV files into SQL**:
 
    ```sql
-   LOAD DATA INFILE  'D:/credit_card.csv'
-   into table cc_detail
-   FIELDS TERMINATED by ','
-   ENCLOSED by '"'
-   lines terminated by '\n'
-   IGNORE 1 ROWS;
+      LOAD DATA INFILE  'D:/credit_card.csv'
+      into table cc_detail
+      FIELDS TERMINATED by ','
+      ENCLOSED by '"'
+      lines terminated by '\n'
+      IGNORE 1 ROWS;
 
-  LOAD DATA INFILE  'D:/customer.csv'
-  into table cust_detail
-  FIELDS TERMINATED by ','
-  ENCLOSED by '"'
-  lines terminated by '\n'
-  IGNORE 1 ROWS;
+      LOAD DATA INFILE  'D:/customer.csv'
+      into table cust_detail
+      FIELDS TERMINATED by ','
+      ENCLOSED by '"'
+      lines terminated by '\n'
+      IGNORE 1 ROWS;
    ```
 
 ## DAX Queries
